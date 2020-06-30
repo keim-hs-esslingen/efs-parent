@@ -1,0 +1,157 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath />
+        <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>de.hsesslingen.keim.efs</groupId>
+    <artifactId>efs-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>EFS Parent</name>
+    <description>Parent POM with a collection of dependencies and plugin configuration that should be used in context of EFS.</description>
+    
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>Ben Oesch</name>
+            <email>ben.oesch@hs-esslingen.de</email>
+            <organization>Hochschule Esslingen</organization>
+            <organizationUrl>https://www.hs-esslingen.de</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <java.version>14</java.version>
+        <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+        <swagger.version>2.9.2</swagger.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-parent</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.hsesslingen.keim</groupId>
+                <artifactId>rest-utils</artifactId>
+                <!-- This version number should begin with the same three numbers as the spring boot version. -->
+                <version>2.2.6.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>1.4.13</version>
+                    <executions>
+                        <execution>
+                            <id>build-image</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+
+                        <execution>
+                            <id>push-image</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>push</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <repository>localhost:5000/${project.artifactId}</repository>
+                        <imageName>${project.artifactId}</imageName>
+                        <dockerDirectory>${project.basedir}</dockerDirectory>
+                        <tag>${project.version}</tag>
+                        <buildArgs>
+                            <JAR_FILE>target/${project.artifactId}-${project.version}.jar</JAR_FILE>
+                        </buildArgs>
+                        <retryPushCount>2</retryPushCount>
+                        <resources>
+                            <resource>
+                                <directory>${project.build.directory}</directory>
+                                <include>target/${project.artifactId}-${project.version}.jar</include>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.5</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>post-unit-test</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                        <configuration>
+                            <additionalProperties>
+                                <java.source>${maven.compiler.source}</java.source>
+                                <java.target>${maven.compiler.target}</java.target>
+                            </additionalProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
