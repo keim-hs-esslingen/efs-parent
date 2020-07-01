@@ -11,7 +11,7 @@ To use efs-parent in your EFS-project replace the "parent" block in pom.xml of t
 
 ```xml
 <parent>
-  <groupId>de.fraunhofer.iao.efs</groupId>
+  <groupId>de.hsesslingen.keim.efs</groupId>
   <artifactId>efs-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <relativePath/> <!-- lookup parent from repository -->
