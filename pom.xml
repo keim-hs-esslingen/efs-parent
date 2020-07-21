@@ -12,7 +12,7 @@
 
     <groupId>de.hsesslingen.keim.efs</groupId>
     <artifactId>efs-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>EFS Parent</name>
     <description>Parent POM with a collection of dependencies and plugin configuration that should be used in context of EFS.</description>
