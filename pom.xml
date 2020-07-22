@@ -12,10 +12,18 @@
 
     <groupId>com.github.keim-hs-esslingen</groupId>
     <artifactId>efs-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>EFS Parent</name>
-    <description>Parent POM with a collection of dependencies and plugin configuration that should be used in context of EFS.</description>
+    
+    <name>EFS-Parent</name>
+    <description>Parent POM of the EFS project with a collection of dependencies and plugin configuration.</description>
+    <url>https://github.com/keim-hs-esslingen/efs-parent</url>
+    
+    <scm>
+        <connection>scm:git:git://github.com:keim-hs-esslingen/efs-parent.git</connection>
+        <developerConnection>scm:git:ssh://github.com:keim-hs-esslingen/efs-parent.git</developerConnection>
+        <url>https://github.com/keim-hs-esslingen/efs-parent</url>
+    </scm>
     
     <licenses>
         <license>
