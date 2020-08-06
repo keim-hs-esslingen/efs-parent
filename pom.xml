@@ -7,7 +7,9 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.6.RELEASE</version>
         <relativePath />
-        <!-- lookup parent from repository -->
+        <!-- An empty relativePath forces maven to lookup the parent in the local/remote repos.
+        It would do this anyways, but before that, it looks at the parent directory first.
+        The empty relativePath tag makes maven skip this step, which is a small optimization. -->
     </parent>
 
     <groupId>com.github.keim-hs-esslingen</groupId>
@@ -71,7 +73,8 @@
             <dependency>
                 <groupId>com.github.keim-hs-esslingen</groupId>
                 <artifactId>rest-utils</artifactId>
-                <!-- This version number should begin with the same three numbers as the spring boot version. -->
+                <!-- This version number should begin with the same three numbers as the spring boot version. 
+                See pom.xml of the rest-utils source code for more details. -->
                 <version>2.2.6.1</version>
             </dependency>
         </dependencies>
