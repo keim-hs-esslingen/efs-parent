@@ -11,7 +11,7 @@
 
     <groupId>com.github.keim-hs-esslingen.efs</groupId>
     <artifactId>efs-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
     
     <name>EFS-Parent</name>
@@ -65,7 +65,7 @@
                 <artifactId>rest-utils</artifactId>
                 <!-- This version number should begin with the same three numbers as the spring boot version. 
                 See pom.xml of the rest-utils source code for more details. -->
-                <version>2.3.1.0-SNAPSHOT</version>
+                <version>2.3.1.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
