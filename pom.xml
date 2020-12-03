@@ -10,7 +10,7 @@
 
     <groupId>com.github.keim-hs-esslingen.efs</groupId>
     <artifactId>efs-parent</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.2</version>
     <packaging>pom</packaging>
     
     <name>EFS-Parent</name>
@@ -21,7 +21,7 @@
         <connection>scm:git:https://github.com/keim-hs-esslingen/efs-parent.git</connection>
         <developerConnection>scm:git:https://github.com/keim-hs-esslingen/efs-parent.git</developerConnection>
         <url>https://github.com/keim-hs-esslingen/efs-parent</url>
-      <tag>HEAD</tag>
+      <tag>Release-2.0.2</tag>
   </scm>
     
     <licenses>
