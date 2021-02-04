@@ -41,8 +41,9 @@
     </developers>
 
     <properties>
-        <java.version>14</java.version>
         <swagger.version>3.0.0</swagger.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
@@ -57,7 +58,7 @@
                 <artifactId>request</artifactId>
                 <!-- This version number should begin with the same three numbers as the spring boot version. 
                 See pom.xml of the rest-utils source code for more details. -->
-                <version>2.3.4.0</version>
+                <version>2.3.4.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
