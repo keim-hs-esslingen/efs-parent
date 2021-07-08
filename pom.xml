@@ -64,68 +64,6 @@
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.spotify</groupId>
-                    <artifactId>dockerfile-maven-plugin</artifactId>
-                    <version>1.4.13</version>
-                    <executions>
-                        <execution>
-                            <id>build-image</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>build</goal>
-                            </goals>
-                        </execution>
-
-                        <execution>
-                            <id>push-image</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>push</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <repository>localhost:5000/${project.artifactId}</repository>
-                        <imageName>${project.artifactId}</imageName>
-                        <dockerDirectory>${project.basedir}</dockerDirectory>
-                        <tag>${project.version}</tag>
-                        <buildArgs>
-                            <JAR_FILE>target/${project.artifactId}-${project.version}.jar</JAR_FILE>
-                        </buildArgs>
-                        <retryPushCount>2</retryPushCount>
-                        <resources>
-                            <resource>
-                                <directory>${project.build.directory}</directory>
-                                <include>target/${project.artifactId}-${project.version}.jar</include>
-                            </resource>
-                        </resources>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.5</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>post-unit-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
